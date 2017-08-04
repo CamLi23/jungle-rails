@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for placing an order!</h1>
+    <p>
+      You have successfully placed an order from jungle.com.
+      Your order number is: <%= @order.id %>.<br>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%  @order.line_items.each do |line_item| %>
+        <tr>
+          <td>
+            <h4><%= line_item.product.name %></h4>
+          </td>
+          <td>
+            <%= line_item.product.price %>
+          </td>
+          <td>
+            <%= line_item.quantity %>
+          </td>
+          <td>
+            <%= line_item.total_price %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th >
+            TOTAL:
+          </th>
+          <th>
+            <%= @order.total %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+    <p>
+      To view your order, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for ordering from us and have a great day!</p>
+  </body>
+</html>
