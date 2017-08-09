@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
       session[:user_id] = @user.id
-    end
+      redirect_to'/login'
     else
       redirect_to '/signup'
     end

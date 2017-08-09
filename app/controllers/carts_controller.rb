@@ -2,6 +2,12 @@ class CartsController < ApplicationController
   before_filter :authorize
 
   def show
+    item = cart[product_id] || { "quantity" => 0 }
+    if item["quantity"].equal? 0
+      redirect_to '/carts/empty'
+    else
+
+    end
   end
 
   def add_item

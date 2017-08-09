@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
+  def current_user_a
+     @current_user ||= User.find(session[:user_id]) if ENV[ADMIN_USERNAME] === session[:user_id]
+  end
+  helper_method :current_user_a
+
+  def authorize_admin
+    redirect_to '/login' unless current_user
+  end
+
   private
 
   def cart
